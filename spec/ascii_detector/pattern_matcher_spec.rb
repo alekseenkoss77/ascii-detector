@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe AsciiDetector::PatternMatcher do
@@ -7,7 +9,7 @@ RSpec.describe AsciiDetector::PatternMatcher do
         [0, 0, 1, 0, 0],
         [0, 1, 1, 1, 0],
         [0, 0, 1, 0, 0],
-        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
       ]
     )
   end
@@ -18,7 +20,7 @@ RSpec.describe AsciiDetector::PatternMatcher do
         [0, 0, 1, 0, 0],
         [0, 1, 1, 1, 0],
         [0, 0, 1, 1, 0],
-        [0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0]
       ]
     )
   end
@@ -39,7 +41,7 @@ RSpec.describe AsciiDetector::PatternMatcher do
           ]
         )
       end
-    
+
       let(:frame) do
         AsciiDetector::Fields::Frame.new(
           [

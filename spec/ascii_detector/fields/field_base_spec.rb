@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe AsciiDetector::Fields::FieldBase do
@@ -6,7 +8,7 @@ RSpec.describe AsciiDetector::Fields::FieldBase do
       [0, 0, 1, 0, 0],
       [0, 1, 1, 1, 0],
       [0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0]
     ]
   end
 
@@ -20,7 +22,7 @@ RSpec.describe AsciiDetector::Fields::FieldBase do
     end
 
     context 'when argument 1D Array' do
-      let(:input) { [1,2,3] }
+      let(:input) { [1, 2, 3] }
 
       it 'raises ArgumentError exception' do
         expect { is_expected }.to raise_error(ArgumentError, 'input must be 2D array')

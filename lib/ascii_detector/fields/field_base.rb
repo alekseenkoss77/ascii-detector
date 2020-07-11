@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AsciiDetector
   module Fields
     class FieldBase
@@ -27,9 +29,9 @@ module AsciiDetector
       private
 
       def validate_input!(input)
-        return if input.is_a?(Array) && input.filter { |r| !r.is_a?(Array) }.count == 0
+        return if input.is_a?(Array) && input.filter { |r| !r.is_a?(Array) }.count.zero?
 
-        raise ArgumentError.new('input must be 2D array')
+        raise ArgumentError, 'input must be 2D array'
       end
     end
   end

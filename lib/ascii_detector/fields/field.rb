@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 module AsciiDetector
   module Fields
     class Field < FieldBase
       def each_with_index
-        raise ArgumentError.new('Block not given') unless block_given?
+        raise ArgumentError, 'Block not given' unless block_given?
 
         row = col = 0
 
-        while row < height do
-          while col < width do
+        while row < height
+          while col < width
             yield(field[row][col], row, col)
             col += 1
           end

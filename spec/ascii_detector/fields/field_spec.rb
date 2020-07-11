@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe AsciiDetector::Fields::Field do
@@ -6,7 +8,7 @@ RSpec.describe AsciiDetector::Fields::Field do
       [0, 0, 1, 0, 0],
       [0, 1, 1, 1, 0],
       [0, 0, 1, 0, 0],
-      [0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0]
     ]
   end
 

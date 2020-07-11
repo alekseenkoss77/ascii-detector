@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 RSpec.describe AsciiDetector::Detector do
@@ -23,10 +25,10 @@ RSpec.describe AsciiDetector::Detector do
         expect(result.size).to eq(4)
         expect(result).to eq(
           {
-            {:x0=>42, :y0=>0, :xn=>49, :yn=>7}=>87.5,
-            {:x0=>35, :y0=>15, :xn=>42, :yn=>22}=>84.375,
-            {:x0=>16, :y0=>28, :xn=>23, :yn=>35}=>85.9375,
-            {:x0=>82, :y0=>41, :xn=>89, :yn=>48}=>85.9375
+            { x0: 42, y0: 0, xn: 49, yn: 7 } => 87.5,
+            { x0: 35, y0: 15, xn: 42, yn: 22 } => 84.375,
+            { x0: 16, y0: 28, xn: 23, yn: 35 } => 85.9375,
+            { x0: 82, y0: 41, xn: 89, yn: 48 } => 85.9375
           }
         )
       end
