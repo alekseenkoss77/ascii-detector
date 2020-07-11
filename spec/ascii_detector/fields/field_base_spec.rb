@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe AsciiDetector::FieldBase do
+RSpec.describe AsciiDetector::Fields::FieldBase do
   let(:input) do
     [
       [0, 0, 1, 0, 0],
@@ -15,7 +15,7 @@ RSpec.describe AsciiDetector::FieldBase do
   describe '#new' do
     context 'when argument is 2D Array' do
       it 'returns instance' do
-        is_expected.to be_an_instance_of(AsciiDetector::FieldBase)
+        is_expected.to be_an_instance_of(described_class)
       end
     end
 

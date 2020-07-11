@@ -4,6 +4,7 @@ loader = Zeitwerk::Loader.for_gem
 loader.setup
 
 module AsciiDetector
-  class Error < StandardError; end
-  # Your code goes here...
+  def self.root
+    File.dirname(__dir__)
+  end
 end

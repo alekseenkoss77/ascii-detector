@@ -1,0 +1,66 @@
+#!/usr/bin/env ruby
+
+require "bundler/setup"
+require "ascii_detector"
+
+HELP = <<~TXT
+Usage:
+  bin/run [options]
+
+Options:
+  -d    # Path to file with data field
+  -p    # Path to file with pattern
+  -n    # Match level (80 by default)
+
+Example:
+  bin/run -d spec/fixtures/data.txt -p spec/fixtures/pattern1.txt -n 80
+TXT
+
+if ARGV.length < 4
+  puts HELP
+  exit 0
+end
+
+data_path = nil
+pattern_path = nil
+noise = nil
+
+ARGV.each_with_index do |val, idx|
+  case val
+  when '-d'
+    data_path = ARGV[idx+1]
+  when '-p'
+    pattern_path = ARGV[idx+1]
+  when '-n'
+    noise = ARGV[idx+1]
+  end
+end
+
+field = AsciiDetector::Utils.read_from_file(data_path)
+pattern = AsciiDetector::Utils.read_from_file(pattern_path)
+
+coords =
+  AsciiDetector::Detector.new(
+    pattern: AsciiDetector::Fields::Pattern.new(pattern),
+    field: AsciiDetector::Fields::Field.new(field),
+    noise: noise ? noise.to_i : nil
+  ).call
+
+if coords.length > 0
+  puts "Detected objects: "
+  puts "-"*80
+
+  coords.each_with_index do |data, index|
+    coord, matched = data
+
+    puts "\nDetected object ##{index + 1}\n"
+    puts "Start point (x, y): [#{coord[:x0] + 1}, #{coord[:y0] + 1}]"
+    puts "End point (x, y): [#{coord[:xn] + 1}, #{coord[:yn] + 1}]"
+    puts "Matched: #{matched}"
+    puts "-"*80
+  end
+else
+  puts "Oops!"
+  puts "We could not find any patterns."
+  puts "Please make sure that you have provided valid arguments."
+end

@@ -1,20 +1,25 @@
 module AsciiDetector
   class Detector
-    DEFAULT_NOISE_LEVEL = 2.freeze
+    DEFAULT_NOISE_LEVEL = 80.freeze
 
     attr_reader :pattern, :field, :detections, :noise_level
 
-    def initialize(pattern, field, noise = nil)
+    def initialize(pattern:, field:, noise: nil)
       @pattern = pattern
       @field = field
       @detections = {}
 
-      @noise_level = calculate_noise(noise)
+      @noise_level = noise(noise)
     end
 
     def call
       field.each_with_index do |_item, row, col|
-        match(frame_coords(row, col))
+        coords = frame_coords(row, col)
+        y, x = [coords[:yn], coords[:xn]]
+
+        if field[y] && field[y][x]
+          match(coords)
+        end
       end
       detections
     end
@@ -30,8 +35,8 @@ module AsciiDetector
     end
 
     def match(coords)
-      frame = Frame.extract(field, **coords)
-      persist(coords, PatternMatcher.new(pattern, frame).call)
+      frame = Fields::Frame.extract(field, **coords)
+      persist(coords, PatternMatcher.new(frame, pattern).call)
     end
 
     def persist(coords, match_percent)
@@ -41,11 +46,11 @@ module AsciiDetector
     end
 
     def frame_coords(row, col)
-      { x0: col, y0: row, xn: frame_border_col, yn: frame_border_row }
+      { x0: col, y0: row, xn: frame_border_col(col), yn: frame_border_row(row) }
     end
 
-    def calculate_noise(noise)
-      100 - (noise || DEFAULT_NOISE_LEVEL) * 10
+    def noise(noise)
+      noise || DEFAULT_NOISE_LEVEL
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe AsciiDetector::Field do
+RSpec.describe AsciiDetector::Fields::Field do
   let(:field) do
     [
       [0, 0, 1, 0, 0],

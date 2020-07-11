@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe AsciiDetector::PatternMatcher do
   let(:pattern) do
-    AsciiDetector::Pattern.new(
+    AsciiDetector::Fields::Pattern.new(
       [
         [0, 0, 1, 0, 0],
         [0, 1, 1, 1, 0],
@@ -13,7 +13,7 @@ RSpec.describe AsciiDetector::PatternMatcher do
   end
 
   let(:frame) do
-    AsciiDetector::Frame.new(
+    AsciiDetector::Fields::Frame.new(
       [
         [0, 0, 1, 0, 0],
         [0, 1, 1, 1, 0],
@@ -32,7 +32,7 @@ RSpec.describe AsciiDetector::PatternMatcher do
 
     context 'when items are strings' do
       let(:pattern) do
-        AsciiDetector::Pattern.new(
+        AsciiDetector::Fields::Pattern.new(
           [
             ['o', 'o', '-'],
             ['o', 'o', '-']
@@ -41,7 +41,7 @@ RSpec.describe AsciiDetector::PatternMatcher do
       end
     
       let(:frame) do
-        AsciiDetector::Frame.new(
+        AsciiDetector::Fields::Frame.new(
           [
             ['o', 'o', '-'],
             ['o', 'o', '-']
