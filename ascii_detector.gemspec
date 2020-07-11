@@ -8,15 +8,15 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Brute force text pattern detector}
   spec.description   = %q{Brute force text pattern detector}
-  spec.homepage      = "https://github.com/alekseenkoss77/ascii_detector"
+  spec.homepage      = "https://github.com/alekseenkoss77/ascii-detector"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
 
   spec.metadata["allowed_push_host"] = ""
 
   spec.metadata["homepage_uri"] = spec.homepage
-  spec.metadata["source_code_uri"] = "https://github.com/alekseenkoss77/ascii_detector"
-  spec.metadata["changelog_uri"] = "https://github.com/alekseenkoss77/ascii_detector/tree/master/changelog.md"
+  spec.metadata["source_code_uri"] = "https://github.com/alekseenkoss77/ascii-detector"
+  spec.metadata["changelog_uri"] = "https://github.com/alekseenkoss77/ascii-detector/tree/master/changelog.md"
 
   spec.add_runtime_dependency 'zeitwerk'
   spec.add_development_dependency 'pry-byebug'
